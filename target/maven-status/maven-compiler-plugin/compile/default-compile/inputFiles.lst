@@ -1,5 +1,8 @@
 G:\dev\e69db023-70c5-4e2d-a77f-d8bf53226bb7\UphillChallenge\src\main\java\com\uphill\codechallenge\configuration\ServerSocketConfiguration.java
+G:\dev\e69db023-70c5-4e2d-a77f-d8bf53226bb7\UphillChallenge\src\main\java\com\uphill\codechallenge\enums\MessagesEnum.java
 G:\dev\e69db023-70c5-4e2d-a77f-d8bf53226bb7\UphillChallenge\src\main\java\com\uphill\codechallenge\gateway\MessageGateway.java
+G:\dev\e69db023-70c5-4e2d-a77f-d8bf53226bb7\UphillChallenge\src\main\java\com\uphill\codechallenge\model\EdgeGraph.java
+G:\dev\e69db023-70c5-4e2d-a77f-d8bf53226bb7\UphillChallenge\src\main\java\com\uphill\codechallenge\model\MessageResponse.java
 G:\dev\e69db023-70c5-4e2d-a77f-d8bf53226bb7\UphillChallenge\src\main\java\com\uphill\codechallenge\model\WeightedEdge.java
 G:\dev\e69db023-70c5-4e2d-a77f-d8bf53226bb7\UphillChallenge\src\main\java\com\uphill\codechallenge\service\MessageHandlerService.java
 G:\dev\e69db023-70c5-4e2d-a77f-d8bf53226bb7\UphillChallenge\src\main\java\com\uphill\codechallenge\service\MessageHandlerServiceImpl.java

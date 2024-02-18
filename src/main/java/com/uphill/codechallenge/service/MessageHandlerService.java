@@ -2,6 +2,7 @@ package com.uphill.codechallenge.service;
 
 import org.springframework.integration.ip.tcp.connection.TcpConnectionExceptionEvent;
 import org.springframework.integration.ip.tcp.connection.TcpConnectionOpenEvent;
+import org.springframework.messaging.Message;
 
 public interface MessageHandlerService {
 
@@ -9,5 +10,5 @@ public interface MessageHandlerService {
 
     void handleTimeout(TcpConnectionExceptionEvent event);
 
-    void handleIncomingMsg(byte[] msg);
+    void handleIncomingMsg(Message message);
 }

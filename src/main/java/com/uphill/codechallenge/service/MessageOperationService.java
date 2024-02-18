@@ -1,7 +1,9 @@
 package com.uphill.codechallenge.service;
 
-public interface MessageOperationService {
-    String handleMessage(String msg);
+import com.uphill.codechallenge.model.MessageResponse;
 
-    String endMessage();
+public interface MessageOperationService {
+    MessageResponse handleMessage(String msg);
+
+    MessageResponse endMessage();
 }

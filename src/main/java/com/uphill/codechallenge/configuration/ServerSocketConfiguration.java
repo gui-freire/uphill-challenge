@@ -1,5 +1,6 @@
 package com.uphill.codechallenge.configuration;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.annotation.ServiceActivator;
@@ -8,12 +9,19 @@ import org.springframework.integration.config.EnableIntegration;
 import org.springframework.integration.ip.tcp.TcpReceivingChannelAdapter;
 import org.springframework.integration.ip.tcp.TcpSendingMessageHandler;
 import org.springframework.integration.ip.tcp.connection.AbstractServerConnectionFactory;
+import org.springframework.integration.ip.tcp.connection.TcpNetClientConnectionFactory;
 import org.springframework.integration.ip.tcp.connection.TcpNetServerConnectionFactory;
+import org.springframework.integration.ip.tcp.connection.ThreadAffinityClientConnectionFactory;
 import org.springframework.messaging.MessageChannel;
 
 @Configuration
 @EnableIntegration
 public class ServerSocketConfiguration {
+
+    @Value("${client.hostname}")
+    private String hostname;
+    @Value("${client.port}")
+    private Integer port;
 
     @Bean
     public MessageChannel inboundChannel() {
@@ -27,10 +35,18 @@ public class ServerSocketConfiguration {
 
     @Bean
     public AbstractServerConnectionFactory serverConnectionFactory() {
-        TcpNetServerConnectionFactory tcpNetServerConnectionFactory = new TcpNetServerConnectionFactory(12345);
+        TcpNetServerConnectionFactory tcpNetServerConnectionFactory = new TcpNetServerConnectionFactory(port);
         tcpNetServerConnectionFactory.setSoTimeout(30000);
-//        tcpNetServerConnectionFactory.setSingleUse(true);
+        tcpNetServerConnectionFactory.setBacklog(50);
         return tcpNetServerConnectionFactory;
+    }
+
+    @Bean
+    public ThreadAffinityClientConnectionFactory clientConnectionFactory() {
+        TcpNetClientConnectionFactory clientConnectionFactory = new TcpNetClientConnectionFactory(hostname, serverConnectionFactory().getPort());
+        clientConnectionFactory.setSingleUse(true);
+        ThreadAffinityClientConnectionFactory threadAffinityClientConnectionFactory = new ThreadAffinityClientConnectionFactory(clientConnectionFactory);
+        return threadAffinityClientConnectionFactory;
     }
 
     @Bean
